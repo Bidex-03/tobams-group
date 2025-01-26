@@ -8,9 +8,23 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        "hero-pattern": "url('/Background-image.png')",
+      },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: {
+          DEFAULT: "#571244",
+          hover: "#451037",
+          shade: "#DDD0DA",
+          dark: "#11040E"
+        },
+        secondary: {
+          DEFAULT: "#EF4353",
+          hover: "#C33644",
+        },
+        white: "#FFFFFF",
+        black: "#000000",
+        
       },
     },
   },
