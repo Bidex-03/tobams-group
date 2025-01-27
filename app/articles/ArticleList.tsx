@@ -27,7 +27,6 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
           description={article.description}
           reading_time_minutes={article.reading_time_minutes}
           published_at={article.published_at}
-          body_plain_text={article.body_plain_text}
           tags={article.tags}
           social_image={article.social_image}
         />
