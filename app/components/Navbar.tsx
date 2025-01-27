@@ -1,10 +1,20 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import {
+  ChevronDownIcon,
+  Bars3Icon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 
-type Props = {};
+const Navbar: React.FC = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-const Navbar: React.FC = (props: Props) => {
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <>
       <section>
@@ -18,7 +28,7 @@ const Navbar: React.FC = (props: Props) => {
             />
           </div>
 
-          <div className="flex space-x-4">
+          <div className="hidden lg:flex space-x-4">
             <button className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-hover flex items-center gap-2">
               <div className="bg-primary-shade rounded-full p-1">
                 <Image src="/user.svg" alt="user icon" width={20} height={20} />
@@ -31,11 +41,21 @@ const Navbar: React.FC = (props: Props) => {
               Take Assessment
             </button>
           </div>
+
+          <div className="lg:hidden">
+            <button onClick={toggleMobileMenu} className="text-black">
+              {isMobileMenuOpen ? (
+                <XMarkIcon className="h-6 w-6" />
+              ) : (
+                <Bars3Icon className="h-6 w-6" />
+              )}
+            </button>
+          </div>
         </nav>
       </section>
 
       <section>
-        <nav className="flex justify-center items-center p-4 bg-white text-black">
+        <nav className="hidden lg:flex justify-center items-center p-4 bg-white text-black">
           <div className="flex items-center space-x-8">
             <button className="hover:text-primary hover:underline hover:underline-offset-8 flex items-center gap-1">
               About <ChevronDownIcon className="h-5 w-5 text-primary" />
@@ -64,6 +84,43 @@ const Navbar: React.FC = (props: Props) => {
           </div>
         </nav>
       </section>
+
+      {isMobileMenuOpen && (
+        <section className="lg:hidden bg-white shadow-md">
+          <nav className="flex flex-col items-center space-y-4 p-4">
+            <button className="hover:text-primary hover:underline hover:underline-offset-8 flex items-center gap-1">
+              About <ChevronDownIcon className="h-5 w-5 text-primary" />
+            </button>
+            <button className="hover:text-primary hover:underline hover:underline-offset-8 flex items-center gap-1">
+              What We Do <ChevronDownIcon className="h-5 w-5 text-primary" />
+            </button>
+            <button className="hover:text-primary hover:underline hover:underline-offset-8 flex items-center gap-1">
+              Jobs <ChevronDownIcon className="h-5 w-5 text-primary" />
+            </button>
+            <button className="hover:text-primary hover:underline hover:underline-offset-8">
+              Projects
+            </button>
+            <button className="hover:text-primary hover:underline hover:underline-offset-8">
+              TG Academy
+            </button>
+            <button className="hover:text-primary hover:underline hover:underline-offset-8">
+              Strategic Partnership
+            </button>
+            <button className="hover:text-primary hover:underline hover:underline-offset-8">
+              Pricing
+            </button>
+            <button className="hover:text-primary hover:underline hover:underline-offset-8">
+              Book a consultation
+            </button>
+            <button className="bg-primary text-white px-4 py-2 rounded-md">
+              Account
+            </button>
+            <button className="bg-secondary text-white px-4 py-2 rounded-md">
+              Take Assessment
+            </button>
+          </nav>
+        </section>
+      )}
     </>
   );
 };
