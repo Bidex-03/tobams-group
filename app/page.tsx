@@ -6,10 +6,11 @@ const Home: React.FC = () => {
   return (
     <main>
       <section
-        className="relative h-screen bg-cover bg-center bg-secondary"
-        // style={{
-        //   backgroundImage: "url('my-project\\public\\Background frame.png')",
-        // }}
+        className="relative h-screen bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://images.pexels.com/photos/262508/pexels-photo-262508.jpeg')",
+        }}
       >
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white w-[90%] sm:w-[80%] md:w-[60%] lg:w-[60%] mx-auto px-4">
