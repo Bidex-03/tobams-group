@@ -9,7 +9,6 @@ type ArticleItemProps = {
   description: string;
   reading_time_minutes: number;
   published_at: string;
-  body_plain_text?: string;
   tags: string;
   social_image: string;
 };
@@ -20,7 +19,6 @@ const ArticleItem: React.FC<ArticleItemProps> = ({
   description,
   reading_time_minutes,
   published_at,
-  body_plain_text,
   tags,
   social_image,
 }) => {
