@@ -118,7 +118,6 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ params }) => {
                 description={moreArticle.description}
                 reading_time_minutes={moreArticle.reading_time_minutes}
                 published_at={moreArticle.published_at}
-                body_plain_text={moreArticle.body_markdown}
                 tags={
                   Array.isArray(moreArticle.tags)
                     ? moreArticle.tags.join(", ")
