@@ -9,7 +9,8 @@ type ArticleItemProps = {
   description: string;
   reading_time_minutes: number;
   published_at: string;
-  tags: string;
+  tags: string[];
+  tag_list?: string;
   social_image: string;
 };
 
@@ -24,12 +25,6 @@ const ArticleItem: React.FC<ArticleItemProps> = ({
 }) => {
   const formattedDate = format(new Date(published_at), "do MMM, yyyy");
 
-  const capitalizeFirstLetter = (string: string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
-
-  const firstTag = capitalizeFirstLetter(tags.split(",")[0].trim());
-
   return (
     <div className="border p-4 rounded-md shadow-md mb-4 bg-white">
       <div className="relative">
@@ -41,7 +36,7 @@ const ArticleItem: React.FC<ArticleItemProps> = ({
           className="w-full h-48 object-cover mb-4 rounded-md"
         />
         <span className="absolute top-2 left-2 bg-primary text-white bg-opacity-70 px-2 py-1 rounded-md">
-          {firstTag}
+          {Array.isArray(tags) ? tags.join(", ") : tags}
         </span>
       </div>
       <h2 className="text-2xl font-bold mb-2 text-black">{title}</h2>

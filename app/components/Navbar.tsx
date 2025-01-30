@@ -45,9 +45,9 @@ const Navbar: React.FC = () => {
           <div className="lg:hidden">
             <button onClick={toggleMobileMenu} className="text-black">
               {isMobileMenuOpen ? (
-                <XMarkIcon className="h-6 w-6" />
+                <XMarkIcon className="h-6 w-6 bg-primary text-white rounded-[3px]" />
               ) : (
-                <Bars3Icon className="h-6 w-6" />
+                <Bars3Icon className="h-6 w-6 bg-primary text-white rounded-[3px]" />
               )}
             </button>
           </div>

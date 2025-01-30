@@ -6,6 +6,7 @@ import Image from "next/image";
 import { format } from "date-fns";
 import ReactMarkdown from "react-markdown";
 import ArticleItem from "../ArticleItem";
+import { SkeletonArticleDetail } from "@/app/components/SkeletonLoader";
 
 type Article = {
   id: number;
@@ -15,6 +16,7 @@ type Article = {
   published_at: string;
   body_markdown: string;
   tags: string[];
+  tag_list: string;
   social_image: string;
 };
 
@@ -74,7 +76,7 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ params }) => {
   };
 
   if (!article) {
-    return <p>Loading...</p>;
+    return <SkeletonArticleDetail />;
   }
 
   const formattedDate = format(new Date(article.published_at), "do MMMM, yyyy");
@@ -83,22 +85,30 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ params }) => {
     (moreArticle) => moreArticle.id !== article.id
   );
 
+  const tag = article.tag_list
+    ? article.tag_list
+    : article.tags.length > 0
+    ? article.tags[0]
+    : "";
+
   return (
     <div className="container mx-auto p-4">
       <div className="mb-4">
         <span className="text-primary bg-gray-200 px-2 py-1 rounded-md">
-          {article.tags[0]}
+          {tag}
         </span>
       </div>
       <h1 className="text-4xl font-bold mb-4">{article.title}</h1>
       <p className="text-sm text-gray-600 mb-4">{formattedDate}</p>
-      <Image
-        src={article.social_image}
-        alt={article.title}
-        width={800}
-        height={400}
-        className="w-full h-96 object-cover mb-4 rounded-t-md"
-      />
+      <div className="w-full h-64 sm:h-80 md:h-96 lg:h-[30rem] relative mb-4">
+        <Image
+          src={article.social_image}
+          alt={article.title}
+          layout="fill"
+          objectFit="cover"
+          className="rounded-t-md"
+        />
+      </div>
       <div className="prose prose-lg max-w-none">
         <ReactMarkdown>{article.body_markdown}</ReactMarkdown>
       </div>
@@ -120,8 +130,8 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ params }) => {
                 published_at={moreArticle.published_at}
                 tags={
                   Array.isArray(moreArticle.tags)
-                    ? moreArticle.tags.join(", ")
-                    : moreArticle.tags
+                    ? moreArticle.tags
+                    : [moreArticle.tags]
                 }
                 social_image={moreArticle.social_image}
               />

@@ -8,7 +8,7 @@ type Article = {
   reading_time_minutes: number;
   published_at: string;
   body_plain_text?: string;
-  tags: string;
+  tags: string[];
   social_image: string;
 };
 
